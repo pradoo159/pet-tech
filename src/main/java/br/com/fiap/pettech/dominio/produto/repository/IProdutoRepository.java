@@ -1,5 +1,6 @@
 package br.com.fiap.pettech.dominio.produto.repository;
 
+import br.com.fiap.pettech.dominio.produto.dto.ProdutoDTO;
 import br.com.fiap.pettech.dominio.produto.entitie.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
