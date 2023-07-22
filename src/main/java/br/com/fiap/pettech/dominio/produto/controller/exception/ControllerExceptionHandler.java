@@ -19,7 +19,17 @@ public class ControllerExceptionHandler {
 
     private GenericError error = new GenericError();
 
-    @ExceptionHandler({DatabaseException.class, ControllerNotFoundException.class})
+    @ExceptionHandler(ControllerNotFoundException.class)
+    public ResponseEntity<GenericError> entityNotFound(ControllerNotFoundException exception, HttpServletRequest request) {
+        error.setTimestamp(Instant.now());
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setError("Entidade não encontrada");
+        error.setMessage(exception.getMessage());
+        error.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(this.error);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
     public ResponseEntity<GenericError> entityNotFound(DatabaseException exception, HttpServletRequest request) {
         error.setTimestamp(Instant.now());
         error.setStatus(HttpStatus.NOT_FOUND.value());
