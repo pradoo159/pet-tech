@@ -4,7 +4,6 @@ import br.com.fiap.pettech.dominio.produto.service.exception.ControllerNotFoundE
 import br.com.fiap.pettech.dominio.produto.service.exception.DatabaseException;
 import br.com.fiap.pettech.dominio.produto.service.exception.GenericError;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
