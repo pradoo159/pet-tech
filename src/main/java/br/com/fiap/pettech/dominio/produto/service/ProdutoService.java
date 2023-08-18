@@ -6,11 +6,10 @@ import br.com.fiap.pettech.dominio.categoria.repository.ICategoriaRepository;
 import br.com.fiap.pettech.dominio.produto.dto.ProdutoDTO;
 import br.com.fiap.pettech.dominio.produto.entitie.Produto;
 import br.com.fiap.pettech.dominio.produto.repository.IProdutoRepository;
-import br.com.fiap.pettech.dominio.produto.service.exception.ControllerNotFoundException;
-import br.com.fiap.pettech.dominio.produto.service.exception.DatabaseException;
+import br.com.fiap.pettech.exception.service.ControllerNotFoundException;
+import br.com.fiap.pettech.exception.service.DatabaseException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -18,8 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

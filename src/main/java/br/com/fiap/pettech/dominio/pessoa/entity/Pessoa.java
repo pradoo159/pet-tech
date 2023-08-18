@@ -1,9 +1,18 @@
 package br.com.fiap.pettech.dominio.pessoa.entity;
 
+import br.com.fiap.pettech.dominio.pessoa.dto.PessoaDTO;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
+@Entity
 public class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -23,6 +32,14 @@ public class Pessoa {
         this.nascimento = nascimento;
         this.cpf = cpf;
         this.email = email;
+    }
+
+    public Pessoa(PessoaDTO dto) {
+        this.id = dto.id();;
+        this.nome = dto.nome();
+        this.nascimento = dto.nascimento();
+        this.cpf = dto.cpf();
+        this.email = dto.email();
     }
 
     public Long getId() {

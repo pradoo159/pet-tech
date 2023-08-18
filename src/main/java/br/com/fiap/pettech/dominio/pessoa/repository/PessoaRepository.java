@@ -1,7 +1,7 @@
 package br.com.fiap.pettech.dominio.pessoa.repository;
 
 import br.com.fiap.pettech.dominio.pessoa.entity.Pessoa;
-import br.com.fiap.pettech.dominio.produto.service.exception.ControllerNotFoundException;
+import br.com.fiap.pettech.exception.service.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class PessoaRepository implements IPessoaRepository {
+public class PessoaRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -22,7 +22,6 @@ public class PessoaRepository implements IPessoaRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @Override
     public List<Pessoa> findAll(int page, int pageSize) {
         int offset = (page - 1) * pageSize;
         StringBuilder sql = new StringBuilder();
@@ -31,7 +30,6 @@ public class PessoaRepository implements IPessoaRepository {
         return jdbcTemplate.query(sql.toString(), new PessoaRowMapper());
     }
 
-    @Override
     public Pessoa findById(Long id) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM pessoas WHERE id = ").append(id);
@@ -41,7 +39,6 @@ public class PessoaRepository implements IPessoaRepository {
         return pessoas.isEmpty() ? null : pessoas.get(0);
     }
 
-    @Override
     public Pessoa save(Pessoa pessoa) {
         try {
             String sql = "INSERT INTO pessoas (cpf, nome, nascimento, email) VALUES (?, ?, ?, ?)";
@@ -52,7 +49,6 @@ public class PessoaRepository implements IPessoaRepository {
         }
     }
 
-    @Override
     public Pessoa update(Long id, Pessoa pessoa) {
         String sql = "UPDATE pessoas SET cpf = ?, nome = ?, nascimento = ?, email = ? WHERE id = ?";
         int rowsAffected = jdbcTemplate.update(
@@ -71,7 +67,6 @@ public class PessoaRepository implements IPessoaRepository {
         }
     }
 
-    @Override
     public void deleteById(Long id) {
         String sql = "DELETE FROM pessoas WHERE id = ?";
 

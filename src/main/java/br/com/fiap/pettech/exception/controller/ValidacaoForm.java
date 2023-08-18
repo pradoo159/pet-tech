@@ -1,6 +1,6 @@
-package br.com.fiap.pettech.dominio.produto.controller.exception;
+package br.com.fiap.pettech.exception.controller;
 
-import br.com.fiap.pettech.dominio.produto.service.exception.GenericError;
+import br.com.fiap.pettech.exception.service.GenericError;
 
 import java.util.ArrayList;
 import java.util.List;
